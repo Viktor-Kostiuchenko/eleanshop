@@ -1,16 +1,13 @@
-// have to clear string #2 after getting data from Local Storage
-import productInfo from '../../../js/json/product/productInfo.json';
 import productTemplate from '../../../views/partials/product/infoAboutProduct.hbs';
+import sizeChose from '../../components/sizeChose'
 window.jQuery = window.$ = require('jquery');
 require('../../slick/slick.min');
-//* way to get a function from Andrew to render a size grid (don't clear)
-// import sizeChose from '../fitting/sizeChose.js';
-// const { createBtn } = sizeChose;
 
-// have to clear string #12 after getting data from Local Storage (data from Ira Maksimova)
-// localStorage.setItem('productInfoData', JSON.stringify(productInfo));
+const { createMarkup, sizeListener, createBtn } = sizeChose
 let savedProductInfoData = localStorage.getItem('productInfoData');
 let parsedProductInfoData = JSON.parse(savedProductInfoData);
+console.log(parsedProductInfoData)
+console.log(parsedProductInfoData[0].size)
 //! ---------------------------------------------------RENDERING A SECTION
 
 export function setProductSlider() {
