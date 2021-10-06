@@ -1,5 +1,5 @@
 import productTemplate from '../../../views/partials/product/infoAboutProduct.hbs';
-import sizeChose from '../../components/sizeChose'
+import sizeChose from '../../components/sizeChose.js'
 window.jQuery = window.$ = require('jquery');
 require('../../slick/slick.min');
 
@@ -45,7 +45,10 @@ export function createFullMarkup() {
   //* way to get a function to get size grid (don't clear)
   // const btn = createBtn(parsedProductInfoData);
   // return productTemplate({parsedProductInfoData, btn});
+  
+  // createMarkup(createBtn(parsedProductInfoData.size))
 }
+
 
 //! ---------------------------------------------------Add to favorites
 function checkIsProductInFavorites() {
