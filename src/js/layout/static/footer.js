@@ -36,7 +36,6 @@ desktop.forEach((evt) => {
 linkMenuFooterDesktop.forEach((evt) => {
     evt.addEventListener('click', (el) => {
         const selected = el.target.dataset.atribute;
-        console.log(selected)
         if (selected) {
             localStorage.setItem("footer-filter-desktop", selected)
         }
