@@ -4,7 +4,6 @@
   justify-content: space-between;
   margin-bottom: 10px;
 }
-
 .fitting__first-row {
   font-weight: 600;
   font-size: 15px;
@@ -13,11 +12,9 @@
   margin-bottom: 9px;
   padding: 0;
 }
-
 .fitting-row {
   border: 1px solid $fitting-borfer-color;
 }
-
 .fitting__size {
   font-size: 15px;
   line-height: 22px;
@@ -33,19 +30,15 @@
   flex-basis: 5%;
   position: relative;
 }
-
 .col2 {
   flex-basis: 5%;
 }
-
 .col3 {
   flex-basis: 5%;
 }
-
 .col4 {
   flex-basis: 5%;
 }
-
 .col5 {
   flex-basis: 5%;
 }
@@ -57,83 +50,61 @@
 
 /*   DESKTOP */
 
-.fitting__product-shipping--container {
+.fitting__product-shipping--container{
   @media screen and (min-width: $mobile-first) {
-    padding-left: 20px;
-    padding-right: 20px;
+padding-left: 20px;
+padding-right: 20px;
   }
-
   @media screen and (min-width: $tablet-general) {
-
+  
     max-width: 669px;
     padding-left: 15px;
     padding-right: 15px;
     margin-left: 60%;
-  }
 }
-
+}
 .fitting__description-item {
   margin-bottom: 75px;
 }
 
 @media screen and (min-width: $desktop-up) {
-
+  
 
   .fitting__heading {
     text-align: center;
   }
-
   .fitting__section {
     padding-top: 68px;
     padding-bottom: 451px;
-    background-image: url('../images/elean47390.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: url('./images/elean47390.jpg') 0 0 /100% no-repeat;
     background-color: $primary-background-color;
-
-
-  }
-
-  @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-    .fitting__section {
-      background-image: url('../images/elean47390@2x.jpg');
-    }
+    overflow: hidden;
   }
 
   .fitting__size-table {
     background-color: $third-background-color;
     padding: 35px;
   }
-
   .fitting__minor-title {
     margin-bottom: 35px;
     margin-top: 0;
-
-    @media screen and (min-width: $mobile-first) and (max-width: $tablet-general) {
-      margin-bottom: 30px;
-    }
+    
+        @media screen and (min-width: $mobile-first) and (max-width: $tablet-general) { 
+       margin-bottom: 30px;
+     } 
   }
-
   .fitting__description-item {
     padding: 15px;
   }
-
   .fitting__video-slider {
     background-color: $third-background-color;
     padding: 35px;
-    overflow: hidden;
   }
-
   .fitting__video,
   .fitting__first-video {
     width: 183px;
     display: block;
   }
-
   .fitting__video-slider-container {
     display: flex;
     flex-direction: row;

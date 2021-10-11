@@ -65,6 +65,7 @@ export function brandRender() {
   formFittingInShowroom();
   infoAboutBrand();
   brandPlayer();
+  blockHelpRender()
 }
 // brandRender(); //========================================================call
 
@@ -129,6 +130,7 @@ export function contactRender() {
   refs.mainEL.innerHTML = contactPageMarkUp;
   refs.mainEL.insertAdjacentHTML('beforeend', contactPageMarkUp);
   formFittingInShowroom();
+  blockHelpRender()
 }
 //contactRender(); //========================================================call==================================
 
@@ -155,6 +157,7 @@ export function deliveryRender() {
   refs.mainEL.innerHTML = deliveryPageMarkUp;
   formDelivery();
   deliveryThreeModal();
+  blockHelpRender()
 }
 
 //deliveryRender(); //========================================================call
@@ -168,7 +171,6 @@ import {
   fittingVideoSliderPlayer,
   videoSlider_videoSliderCreate,
 } from './layout/fitting/videoSlider.js';
-console.log(sizeTable_tableCreate);
 export function fittingRender() {
 
   classBody()
@@ -179,9 +181,10 @@ export function fittingRender() {
     formBrand,
   });
   refs.mainEL.innerHTML = fittingMarkUp;
-  //openVideoSlider();
+  openVideoSlider();
   //fittingVideoSliderPlayer();
   formFittingInShowroom();
+  blockHelpRender()
 }
 //fittingRender(); //============================================================call
 
@@ -247,6 +250,7 @@ export function productRender() {
   objProductModalAddToCart.setSlider();
   setEventPreorder();
   setEventTryOnModels();
+  blockHelpRender()
 }
 
 // productRender(); //========================================================call
@@ -270,6 +274,7 @@ export function reviewsRender() {
   starClientsComments();
   formReviews();
   videoSetPlayer();
+  blockHelpRender()
 }
 
 // reviewsRender(); //========================================================call
@@ -282,6 +287,7 @@ export function showroomRender() {
   refs.mainEL.innerHTML = showroomPageMarkUp;
   showroomSlider();
   formFittingInShowroom();
+  blockHelpRender()
 }
 //showroomRender(); //========================================================call===================
 
@@ -305,7 +311,7 @@ export function catalogRender() {
   refs.mainEL.innerHTML = filterGalleryCatalogMarkup;
   openFilter();
   openCategory();
-
+  blockHelpRender()
   // console.log(filterGalleryCatalogMarkup);
 }
 //catalogRender(); //========================================================call
