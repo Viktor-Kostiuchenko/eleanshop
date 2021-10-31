@@ -67,7 +67,6 @@ export function brandRender() {
   blockHelpRender();
 }
 
-
 //=====checkout========//
 import { ModalData, createPayment } from './layout/checkout/payment.js';
 import { ordering, openOrderingFunction } from './layout/checkout/ordering.js';
@@ -131,16 +130,15 @@ export function contactRender() {
   blockHelpRender();
 }
 
-
 //=====delivery========//
 import deliveryMarkUp from '../views/layouts/delivery.hbs';
 import { formDeliveryMarkUp, formDelivery } from './layout/delivery/formsQuestion.js';
-import { deliveryThreeModal } from './layout/delivery/deliveryTypes.js';
 import {
   buttonsDelivery,
   mainImageDelivery,
   descriptionDelivery,
   questionDelivery,
+  deliveryThreeModal,
 } from './layout/delivery/deliveryTypes.js';
 
 export function deliveryRender() {
@@ -157,8 +155,6 @@ export function deliveryRender() {
   deliveryThreeModal();
   blockHelpRender();
 }
-
-
 
 //=====fitting========//
 import sizeTable_markup from '../views/layouts/fitting.hbs';
@@ -184,7 +180,6 @@ export function fittingRender() {
   blockHelpRender();
 }
 
-
 //=====product========//
 import {
   setProductSlider,
@@ -200,7 +195,11 @@ import backdropMarkupTempl from '../views/components/backdrop.hbs';
 import modalFormMarkupTempl from '../views/components/thanksForOrdering.hbs';
 import { preorderMark, setEventPreorder } from './layout/product/preorderModal.js';
 import { tryOnModels, setEventTryOnModels } from './layout/product/tryOnModelsModal.js';
-
+import sizeChose from './components/sizeChose.js';
+const { createMarkup, sizeListener, createBtn } = sizeChose;
+let savedProductInfoData = localStorage.getItem('productInfoData');
+let parsedProductInfoData = JSON.parse(savedProductInfoData);
+console.log('parsedProductInfoData', parsedProductInfoData);
 export function productRender() {
   classBody();
   const objRecomendationsCategory = new RecomendationsCategory({
@@ -226,6 +225,7 @@ export function productRender() {
   const modalFormMarkupOrder = modalFormMarkupTempl();
   const modalFormMarkup = modalFormMarkupOrder + objProductModalAddToCart.getMarkup();
   const backdropMarkup = backdropMarkupTempl(modalFormMarkup);
+  const markupSize = createMarkup(createBtn(parsedProductInfoData));
   const obj = {
     infoAboutProduct: createFullMarkup(),
     recomendationCategory: objRecomendationsCategory.getMarkup(),
@@ -233,6 +233,7 @@ export function productRender() {
     backdrop: backdropMarkup,
     modalPreorder: preorderMark,
     tryOnModels: tryOnModels,
+    // markupSize: markupSize,
   };
   // refs.mainEL.insertAdjacentHTML('beforeend', productMarkup(obj));
   refs.mainEL.innerHTML = productMarkup(obj);
@@ -248,9 +249,9 @@ export function productRender() {
   setEventPreorder();
   setEventTryOnModels();
   blockHelpRender();
+  const { mainEL } = refs;
+  mainEL.insertAdjacentHTML('beforeend', markupSize);
 }
-
-
 
 //=====reviews========//
 import reviews_page from '../views/layouts/reviews.hbs';
@@ -274,8 +275,6 @@ export function reviewsRender() {
   blockHelpRender();
 }
 
-
-
 //=====showroom========//
 import showroom_page from '../views/layouts/showroom.hbs';
 export function showroomRender() {
@@ -286,7 +285,6 @@ export function showroomRender() {
   formFittingInShowroom();
   blockHelpRender();
 }
-
 
 //=====blockHelp========//
 import blockHelp_blockHelpTemplate from '../views/components/blockHelp.hbs';
@@ -311,4 +309,3 @@ export function catalogRender() {
   blockHelpRender();
   // console.log(filterGalleryCatalogMarkup);
 }
-
