@@ -27,12 +27,14 @@ const {
   linkMenuFooterDesktop,
   linkMenuFooterMobile,
   dropDownList,
-  dropDown,
+  dataActionCollection
 } = refs;
-
 checkBoxIcon.addEventListener('click', onAgreeCheckBox);
 mobileSubmitBtn.addEventListener('submit', onSubmitBtnMobile);
 desktopSubmitBtn.addEventListener('submit', onSubmitBtnDesktop);
+desktopSubmitBtn.addEventListener('click', onSubmitVerificationDesktop);
+
+
 
 //=== smooth scrolling on  desktop
 desktop.forEach(evt => {
@@ -47,9 +49,7 @@ desktop.forEach(evt => {
 linkMenuFooterDesktop.forEach(evt => {
   evt.addEventListener('click', el => {
     const selected = el.target.dataset.atribute;
-    if (selected) {
-      localStorage.setItem('footer-filter-desktop', selected);
-    }
+    if (selected) localStorage.setItem('footer-filter-desktop', selected);
   });
 });
 
@@ -57,36 +57,35 @@ linkMenuFooterDesktop.forEach(evt => {
 linkMenuFooterMobile.forEach(evt => {
   evt.addEventListener('click', el => {
     const selected = el.target.dataset.atribute;
-    if (selected) {
-      localStorage.setItem('content', selected);
-    }
+    if (selected) localStorage.setItem('content', selected);
   });
 });
-
 // === drop-down menu-list ===
 closeOpenPlus.forEach(evt => {
   evt.addEventListener('click', el => {
     const idMuneClickMobile = evt.id;
+    const dropDown = document.querySelector('.open-menu');
     if (!el.target.nextElementSibling) {
       scrollTo(0, 700);
       localStorage.setItem('footer-filtr-mobile', idMuneClickMobile);
+    } else {
+      el.preventDefault();
     }
-    el.preventDefault();
     if (el.target.nextElementSibling) {
+      console.log(el.target.nextElementSibling);
+
       if (dropDown) {
         dropDown.classList.toggle('open-menu');
         dropDown.nextElementSibling.classList.toggle('js-dropdown-none');
         if (el.target === dropDown) {
           return;
         } else if (el.target === dropDownList) {
-          dropDown.parentElement.classList.remove('.js-dropdown-none');
-        }
+          dropDown.parentElement.classList.remove('.js-dropdown-none')
+        };
       }
       el.target.classList.toggle('open-menu');
       el.target.nextElementSibling.classList.toggle('js-dropdown-none');
-    } else {
-      window.location.href = el.target;
-    }
+    } return;
   });
 });
 
@@ -96,11 +95,10 @@ linkMenuFooterMobile.forEach(evt => {
     scrollTo(0, 700);
     el.preventDefault();
     const dropDown = document.querySelector('.js-dropdown-none');
-    const openMenu = document.querySelector('.open-menu');
     if (el.target) {
+      const openMenu = document.querySelector('.open-menu');
       dropDown.classList.remove('js-dropdown-none');
       openMenu.classList.remove('open-menu');
-      window.location.href = el.target;
     }
   });
 });
@@ -110,16 +108,16 @@ function onAgreeCheckBox(evt) {
   const iconCheck = evt.currentTarget;
   if (iconCheck) {
     agreeActive.classList.toggle('js-show-and-remove');
+    desktopSubmitBtn.toggleAttribute("disabled")
   }
 }
 
 // Appointment localStorage on input mobile
 inputStorageMobile.forEach(evt => {
+  const idInputMobile = evt.id;
   evt.addEventListener('input', el => {
     const subscribe = el.currentTarget.value;
-    if (subscribe) {
-      localStorage.setItem(idInputMobile, subscribe);
-    }
+    if (subscribe) localStorage.setItem(idInputMobile, subscribe);
   });
 });
 
@@ -128,9 +126,7 @@ inputStorageDesktop.forEach(evt => {
   const idInputDesktop = evt.id;
   evt.addEventListener('input', el => {
     const subscribe = el.currentTarget.value;
-    if (subscribe) {
-      localStorage.setItem(idInputDesktop, subscribe);
-    }
+    if (subscribe) localStorage.setItem(idInputDesktop, subscribe);
   });
 });
 
@@ -144,16 +140,11 @@ function onSubmitBtnMobile(evt) {
 //   Remuve localStorage on input desktop
 function onSubmitBtnDesktop(evt) {
   evt.preventDefault();
-  evt.currentTarget.reset();
-  localStorage.removeItem('name');
-  localStorage.removeItem('email');
+  onSubmitVerificationDesktop()
 }
 
 //=== RENDER ===//
-
-const dataActionCollectio = document.querySelectorAll('[data-atribute]');
-
-dataActionCollectio.forEach(evt => {
+dataActionCollection.forEach(evt => {
   evt.addEventListener('click', el => {
     const targetLink = el.target.dataset.atribute;
     //==== MobileRender ===//
@@ -167,59 +158,41 @@ dataActionCollectio.forEach(evt => {
       targetLink === 'costumes' ||
       targetLink === 'pants' ||
       targetLink === 'blouses'
-    )
-    {
-        return catalogRender();
-    }
+    ) catalogRender();
 
     //==== brandRender ===//
     if (
       targetLink === 'about-the-brand' ||
       targetLink === 'about-founders' ||
       targetLink === 'blog'
-    ) {
-      return brandRender();
-    }
+    ) brandRender();
+
     //==== showroomRender ===//
-    if (targetLink === 'showroom') {
-      return showroomRender();
-    }
+    if (targetLink === 'showroom') showroomRender();
 
     //==== deliveryRender ===//
-    if (targetLink === 'delivery' || targetLink === 'return' || targetLink === 'payment') {
-      return deliveryRender();
-    }
+    if (targetLink === 'delivery' || targetLink === 'return' || targetLink === 'payment') deliveryRender();
+
 
     //==== showroomRender ===//
-    if (targetLink === 'showroom' || targetLink === 'showroom') {
-      return showroomRender();
-    }
+    if (targetLink === 'showroom' || targetLink === 'showroom') showroomRender();
 
     //==== formFittingInShowroom ===//
-    if (targetLink === 'fitting') {
-      return fittingRender();
-    }
+    if (targetLink === 'fitting') fittingRender();
+
 
     //==== reviewsRender ===//
-    if (targetLink === 'reviews') {
-      return reviewsRender();
-    }
+    if (targetLink === 'reviews') reviewsRender();
 
     //==== renderDesktop ===//
 
     //==== DeliveryRender ===//
-    if (targetLink === 'delivery' || targetLink === 'payment' || targetLink === 'return') {
-      return deliveryRender();
-    }
+    if (targetLink === 'delivery' || targetLink === 'payment' || targetLink === 'return') deliveryRender();
 
     //==== FittingRender ===//
-    if (targetLink === 'fitting') {
-      return fittingRender();
-    }
+    if (targetLink === 'fitting') fittingRender();
     //==== ContactsRender ===//
-    if (targetLink === 'contacts') {
-      return contactRender();
-    }
+    if (targetLink === 'contacts') contactRender();
   });
 });
 
@@ -230,4 +203,9 @@ export function classBody(value) {
   } else {
     document.body.classList.remove(BodyClass);
   }
+}
+
+function onSubmitVerificationDesktop(evt) {
+  localStorage.removeItem('name');
+  localStorage.removeItem('email');
 }
