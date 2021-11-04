@@ -112,14 +112,40 @@ function onAgreeCheckBox(evt) {
   }
 }
 
+// inputStorageMobile.forEach(evt => {
+//   const idInputMobile = evt.id;
+//   evt.addEventListener('input', el => {
+//     const subscribe = el.currentTarget.value;
+//     if (subscribe) localStorage.setItem(idInputMobile, subscribe);
+//   });
+// });
+
 // Appointment localStorage on input mobile
-inputStorageMobile.forEach(evt => {
-  const idInputMobile = evt.id;
-  evt.addEventListener('input', el => {
-    const subscribe = el.currentTarget.value;
-    if (subscribe) localStorage.setItem(idInputMobile, subscribe);
-  });
-});
+class MobileLocalStorage {
+  constructor(idInputMobile, subscribe) {
+    this.idInputMobile = idInputMobile;
+    this.subscribe = subscribe;
+  }
+  get idInputMob() {
+    return this.idInputMobile
+  }
+  set idInputMob(value) {
+    inputStorageMobile.forEach(evt => {
+      this.idInputMobile = evt.id;
+      console.log(this.idInputMobile);
+      evt.addEventListener('input', el => {
+        this.subscribe = el.currentTarget.value;
+        if (this.subscribe) localStorage.setItem(this.idInputMobile, this.subscribe);
+      });
+    });
+  }
+}
+const mobileLocalStorage = new MobileLocalStorage()
+mobileLocalStorage.idInputMob = 'idInputMobile', 'subscribe';
+
+
+
+
 
 // Appointment localStorage на input desktop
 inputStorageDesktop.forEach(evt => {
@@ -209,3 +235,4 @@ function onSubmitVerificationDesktop(evt) {
   localStorage.removeItem('name');
   localStorage.removeItem('email');
 }
+
